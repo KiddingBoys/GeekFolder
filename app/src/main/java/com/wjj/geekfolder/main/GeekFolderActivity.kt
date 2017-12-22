@@ -16,17 +16,16 @@ import com.wjj.geekfolder.R
  */
 class GeekFolderActivity : AppCompatActivity() {
 
+    private lateinit var mMainUi: GeekFolderMainUi
+    private lateinit var mMainController: GeekFolderMainController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_geek_folder)
 
-        val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
-        setSupportActionBar(toolbar)
-        val fab = findViewById<View>(R.id.fab) as FloatingActionButton
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
+        mMainController = GeekFolderMainController(this)
+        mMainUi = GeekFolderMainUi(this,mMainController)
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

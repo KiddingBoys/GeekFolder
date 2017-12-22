@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="home_classify_title">
+        <item>Picture</item>
+        <item>Music</item>
+        <item>Video</item>
+        <item>Doc</item>
+        <item>Download</item>
+        <item>APK</item>
+    </string-array>
+
+</resources>
