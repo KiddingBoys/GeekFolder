@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.GridView
 import com.wjj.geekfolder.R
-import android.R.attr.name
 import com.wjj.geekfolder.adapters.HomeClassifyGVAdapter
 import java.util.*
 
@@ -22,12 +21,11 @@ class HomeClassifyView: FrameLayout {
     constructor(context: Context):super(context){
         LayoutInflater.from(context).inflate(R.layout.view_home_classify, this)
         mClassifyGV = findViewById<View>(R.id.gv_home_classify_view) as GridView
-
         //生成动态数组，并且转入数据
         val dataList = getDataList(context)
         mClassifyGVAdapter = HomeClassifyGVAdapter(context, dataList)
         mClassifyGV.adapter = mClassifyGVAdapter
-
+        mClassifyGVAdapter.notifyDataSetChanged()
     }
 
     private val IMAGERES = intArrayOf(R.mipmap.icon_picture, R.mipmap.icon_music, R.mipmap.icon_media, R.mipmap.icon_file, R.mipmap.icon_download, R.mipmap.icon_apk)

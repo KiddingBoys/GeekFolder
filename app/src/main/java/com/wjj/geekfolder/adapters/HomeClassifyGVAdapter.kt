@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.ListAdapter
 import android.widget.TextView
@@ -16,12 +17,11 @@ import com.wjj.geekfolder.R
 /**
  * Created by wujiajun on 17-12-22.
  */
-class HomeClassifyGVAdapter : ListAdapter {
+class HomeClassifyGVAdapter : BaseAdapter {
 
     private val TAG = "HomeClassifyGVAdapter"
     private var mContext: Context
     private var mDataList: ArrayList<HashMap<String, Object>>
-    private var mDataSetObservable = DataSetObservable()
 
     constructor(context: Context, dataList: ArrayList<HashMap<String, Object>>) {
         mContext = context
@@ -29,37 +29,30 @@ class HomeClassifyGVAdapter : ListAdapter {
 
     }
 
-    override fun areAllItemsEnabled(): Boolean {
-        return true
-    }
-
-    override fun isEnabled(p0: Int): Boolean {
-        return true
-    }
-
-    override fun isEmpty(): Boolean {
-        return mDataList == null || mDataList.size == 0
-    }
-
-    override fun registerDataSetObserver(p0: DataSetObserver?) {
-        mDataSetObservable.registerObserver(p0)
-    }
-
-    override fun hasStableIds(): Boolean {
-        //返回false的话 每次调用notifyDataSetChanged方法时 adapter就会判断getItemId,只调用那些Item发生变化的getView方法
-        return true
-    }
-
-    override fun unregisterDataSetObserver(p0: DataSetObserver?) {
-        mDataSetObservable.unregisterObserver(p0)
-    }
+//    override fun areAllItemsEnabled(): Boolean {
+//        //所有的项目都是可用的？如果是，则代表所有的项目都是可选择，可用鼠标点击的。
+//        return true
+//    }
+//
+//    override fun isEnabled(p0: Int): Boolean {
+//        return true
+//    }
+//
+//    override fun isEmpty(): Boolean {
+//        return mDataList == null || mDataList.size == 0
+//    }
+//
+//    override fun hasStableIds(): Boolean {
+//        //返回false的话 每次调用notifyDataSetChanged方法时 adapter就会判断getItemId,只调用那些Item发生变化的getView方法
+//        return true
+//    }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var holder: ClassifyGVViewHolder
         var itemView: View
         if (convertView == null) {
             holder = ClassifyGVViewHolder()
-            itemView = LayoutInflater.from(mContext).inflate(R.layout.item_home_classify, parent, false)
+            itemView = LayoutInflater.from(mContext).inflate(R.layout.item_home_classify, null)
             holder.titleView = itemView.findViewById<View>(R.id.tv_item_classify_name) as TextView
             holder.iconView = itemView.findViewById<View>(R.id.iv_item_classify_icon) as ImageView
             itemView.tag = holder
@@ -77,21 +70,12 @@ class HomeClassifyGVAdapter : ListAdapter {
         return itemView
     }
 
-    override fun getItemViewType(p0: Int): Int {
-        return 0
+    override fun getItemId(p0: Int): Long {
+        return p0.toLong()
     }
 
     override fun getItem(p0: Int): Any {
         return mDataList.get(p0)
-    }
-
-    override fun getViewTypeCount(): Int {
-        return 1
-
-    }
-
-    override fun getItemId(p0: Int): Long {
-        return p0.toLong()
     }
 
     override fun getCount(): Int {

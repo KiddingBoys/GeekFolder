@@ -51,7 +51,7 @@ class MainRecycleViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
         // judge if the list need refresh
         if(isNeedRefresh){
             if(BuildConfig.DEBUG){
-                Log.d(TAG,"refreshDataList notifyDataSetChanged")
+                Log.d(TAG,"refreshDataList notifyDataSetChanged  mDataList.size = " + mDataList.size)
             }
             notifyDataSetChanged()
         }
@@ -61,11 +61,11 @@ class MainRecycleViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return mDataList.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder? {
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
 
         var viewHolder = when(viewType){
-            MainRecycleViewBean.TYPE_CLASSIFY_VIEW -> HomeRecycleViewHolder(mHomeClassifyView)
-            else -> null
+            MainRecycleViewBean.TYPE_CLASSIFY_VIEW -> HomeClassifyViewHolder(mHomeClassifyView)
+            else -> HomeEmptyViewHolder(mHomeClassifyView)
         }
         if(BuildConfig.DEBUG){
             Log.d(TAG,"onCreateViewHolder viewType = " + viewType)
@@ -74,19 +74,25 @@ class MainRecycleViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if(holder == null){
+            return
+        }
+
     }
 
     override fun getItemViewType(position: Int): Int {
         if(mDataList == null || mDataList.get(position) == null){
-            return 0
+            return -1
         }
         return mDataList.get(position).mType
     }
 
 
-    class HomeRecycleViewHolder : RecyclerView.ViewHolder{
-        constructor(view:View):super(view){
-        }
+    class HomeClassifyViewHolder : RecyclerView.ViewHolder{
+        constructor(view:View):super(view){}
+    }
+
+    class HomeEmptyViewHolder : RecyclerView.ViewHolder{
+        constructor(view:View):super(view){}
     }
 }
