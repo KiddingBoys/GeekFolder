@@ -5,8 +5,8 @@
         <item>Music</item>
         <item>Video</item>
         <item>Doc</item>
-        <item>Download</item>
         <item>APK</item>
+        <item>MORE</item>
     </string-array>
 
 </resources>

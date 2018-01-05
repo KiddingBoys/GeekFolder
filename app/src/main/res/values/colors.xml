@@ -3,4 +3,13 @@
     <color name="colorPrimary">#2F9AFF</color>
     <color name="colorPrimaryDark">#3B5998</color>
     <color name="colorAccent">#F2FF7526</color>
+
+    <!-- home classify -->
+    <color name="white">#ffffff</color>
+    <color name="item_bg">#e5e5e5</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent_half">#23000000</color>
+    <color name="gap_line">#e2e2e2</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_777572">#777572</color>
 </resources>
